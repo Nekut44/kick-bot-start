@@ -24,7 +24,7 @@ def webhook():
 
 def run_bot():
     global application
-    application = Application.builder().token(BOT_TOKEN).build()
+    application = Application.builder().token(BOT_TOKEN).post_init(lambda app: None).build()
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, echo))
     # Запуск поллинга внутри asyncio цикла
     application.run_polling()
